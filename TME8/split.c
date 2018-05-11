@@ -5,7 +5,8 @@
 static
 region *creer_region( unsigned char *buf, int ix, int iy, int x, int y, int dimx) {
   region *r = (region *) g_malloc( sizeof(region));
-
+  int hist[256]; // histogramme de l'image codage 8bits
+  for(int i=0; i< 256; i++) hist[i] = 0;
   r->ix = ix;
   r->iy = iy;
   r->x  = x;
@@ -19,17 +20,14 @@ region *creer_region( unsigned char *buf, int ix, int iy, int x, int y, int dimx
   for(int i = ix; i < ix+x; i++){
     for(int j = iy; j < iy+y; j++){
       r->mu += buf[i + j*dimx];
+      hist[ buf[i + j*dimx] ]++;
     }
   }
   r->mu /= r->n;
-
-  for(int i=ix; i< ix+x; i++){
-    for(int j=iy; j< iy+y; j++){
-      r->var +=pow(buf[i+j*dimx]-r->mu,2);
-    }
-  }
+  r->var = 0;
+  for(int i=0; i<256; i++)
+    r->var += hist[i] * pow( i - r->mu ,2);
   r->var /= r->n;
-  // printf("x=%d y=%dmu= %f var= %f\n",r->mu, r->var );
   return r;
 }
 

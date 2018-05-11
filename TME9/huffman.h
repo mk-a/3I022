@@ -1,6 +1,7 @@
 typedef unsigned char uchar;
 
 void hisn      ( float *his, uchar *buf, long size);
+double entropie(float* his);
 
 void hufftable ( float *his, char **table, int L) ;
 

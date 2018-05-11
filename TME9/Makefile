@@ -1,6 +1,6 @@
 CC= gcc
 CFLAGS = `inrinfo --cflags` -g
-LDLIBS = `inrinfo --libs`
+LDLIBS = `inrinfo --libs` -lm
 
 all: essai inr2huff huff2inr mat2lpc lpc2mat
 
@@ -21,3 +21,5 @@ clean:
 cleanall: clean
 	$(RM) inr2huff huff2inr
 	$(RM) mat2lpc lpc2mat essai
+
+re: cleanall all

@@ -37,8 +37,8 @@ int main( int argc, char **argv) {
 
 
   /* encodage image */
-  huffenc( buf_enc, buf, DIMX*DIMY, table);
-
+  int nbbits = huffenc( buf_enc, buf, DIMX*DIMY, table);
+  fprintf(stderr, "Compression : %f  entropie : %f\n", 8.*DIMX*DIMY/nbbits, entropie(his) );
 
   /* decodage image */
   huffdec( buf, buf_enc, DIMX*DIMY, table, L);

@@ -19,12 +19,9 @@ struct huffhead {
  * @param lfmt format de l'image décodée.
  */
 
-void writehuff( char *name, float *his, int L,
-		unsigned char *enc, int lenc,
-		Fort_int lfmt[] ) {
+void writehuff( char *name, float *his, int L, unsigned char *enc, int lenc, Fort_int lfmt[] ) {
   struct huffhead head = {NDIMX, NDIMY, NDIMZ, NDIMV, BSIZE};
   FILE *fp;
-
 
   fp = *name != '>' ? fopen( name, "wb") : stdout;
 
@@ -32,7 +29,7 @@ void writehuff( char *name, float *his, int L,
   head.lenc = lenc;
   fwrite( &head, sizeof(struct huffhead), 1, fp);
   fwrite( his, sizeof(float), L, fp);
-  fwrite( enc, 1, (lenc+7)/8, fp);
+  fwrite( enc, 1, lenc, fp);
 
   if( *name != '>') fclose(fp);
 }

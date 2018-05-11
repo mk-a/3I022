@@ -18,11 +18,6 @@ int main( int *argc, char **argv) {
   /* lecture de l'image encodee */
   buf_enc = readhuff(nom, lfmt, &his, &L, &lenc);
 
-  /*affichage du buf_enc */
-  // for(int i=0; i< DIMX*DIMY; i++) printf("%c",buf_enc[i]);
-  // printf("\n");
-
-
   /* creation de la table */
   table = (char**) malloc(L * sizeof(char*));
   hufftable(his, table, L);
@@ -30,7 +25,7 @@ int main( int *argc, char **argv) {
 
   /* decodage image */
   buf = (unsigned char *) malloc(DIMX * DIMY * sizeof(char));
-  huffdec( buf, buf_enc, DIMX * DIMY, table, L);
+  huffdec( buf, buf_enc, lenc*8, table, L);
 
 
   /* ecriture image */

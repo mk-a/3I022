@@ -71,7 +71,6 @@ static struct node *creer_arbre( float *his, int L) {
 
 static void litcode( struct node *n, char **table, char *code) {
   char cp[100];
-
   if( n->b0) {
     strcpy(cp,code);
     litcode(n->b0, table, strcat(code,"0"));
@@ -79,7 +78,6 @@ static void litcode( struct node *n, char **table, char *code) {
     litcode(n->b1, table, strcat(code,"1"));
   } else
     table[n->v] = strdup(code);
-
   /* on libere apres parcours */
   free(n);
 }
@@ -94,7 +92,6 @@ static void litcode( struct node *n, char **table, char *code) {
 void hufftable( float *his, char **table, int L) {
   struct node *n;
   char code[100];
-
   n = creer_arbre( his, L);
   *code = 0;
   litcode( n, table, code);
@@ -137,8 +134,7 @@ static void ecritbit( unsigned char *s, long b, char val) {
  * @return nombre de bits effectivement écrit dans out
  */
 
-int huffenc( unsigned char *out, unsigned char *in,
-	     long size, char **table) {
+int huffenc( unsigned char *out, unsigned char *in, long size, char **table) {
   char *bit;
   long nbits=0;
 
