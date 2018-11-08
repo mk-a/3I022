@@ -1,4 +1,4 @@
-TME 4 - ADRIEN MAINKA 3407003
+TME 4
 
 Les réponses des questions nécessitants des commandes sont écrites dans des script.sh éponymes.
 
